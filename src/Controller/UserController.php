@@ -48,8 +48,7 @@ class UserController extends AbstractController
     {
         if ($request->isMethod('post')) {
             $user = new User();
-            $user->setName($request->request->get('name'));
-            $user->setfirstName($request->request->get('firstname'));
+            $user->setUsername($request->request->get('username'));
             $user->setEmail($request->request->get('email'));
             $this->em()->persist($user);
             $this->em()->flush();

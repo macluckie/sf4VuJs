@@ -5,7 +5,7 @@ security:
         user:
             entity:
                 class: 'App\Entity\User' 
-                property: 'apiToken'
+                property: 'api_token'
     
     firewalls:
        
