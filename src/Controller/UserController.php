@@ -34,14 +34,6 @@ class UserController extends AbstractController
             'res' => '1'
         ]);
     }
-
-
-
-
-
-
-
-
     
 
     private function addUser($request)
