@@ -12,6 +12,7 @@ class ArticlesFixtures extends Fixture
     {
         for ($i = 0; $i < 3000; $i++) {
             $article = new article();
+            $article->setTitle('title'.$i);
             $article->setAuteur('auteur'. $i);
             // $article->setDate(date('d/m/Y'));
             $article->setContenue('"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -21,6 +22,8 @@ class ArticlesFixtures extends Fixture
               proident, sunt in culpa qui officia deserunt mollit anim id est laborum."');
 
             $article->setPicture('name picture'. $i);
+            $article->setSubTitle("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim".$i);
             $manager->persist($article);
             $manager->flush();
         }

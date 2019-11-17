@@ -16,6 +16,17 @@ class Article
      */
     private $id;
 
+     /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $title;
+    
+    
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    private $subTitle;
+
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
@@ -60,7 +71,7 @@ class Article
 
     public function setDate(?\DateTimeInterface $date): self
     {
-        $this->date = $date;
+        $this->date = new \DateTime();
 
         return $this;
     }
@@ -85,6 +96,46 @@ class Article
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of title
+     */ 
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set the value of title
+     *
+     * @return  self
+     */ 
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of subTitle
+     */ 
+    public function getSubTitle()
+    {
+        return $this->subTitle;
+    }
+
+    /**
+     * Set the value of subTitle
+     *
+     * @return  self
+     */ 
+    public function setSubTitle($subTitle)
+    {
+        $this->subTitle = $subTitle;
 
         return $this;
     }
