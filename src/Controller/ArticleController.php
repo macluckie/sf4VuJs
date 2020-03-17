@@ -48,4 +48,24 @@ class ArticleController  extends AbstractController
 
         ]);
     }
+
+
+    /**
+     * HEAD Route annotation.
+     * @Get("/articleId/")
+     */
+    public function getIdarticle(){
+        $em = $this->getDoctrine()->getManager();
+        $minId = $em->getRepository(Article::class)->getMinId();
+        $maxId = $em->getRepository(Article::class)->getMaxId();
+
+        return $this->json([
+            'minId' => $minId[0]->getId(),
+            'maxId' => $maxId[0]->getId()
+
+        ]);
+
+
+        
+    }
 }
