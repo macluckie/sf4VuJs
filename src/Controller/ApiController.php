@@ -3,25 +3,19 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
-use FOS\RestBundle\Routing\ClassResourceInterface;
-use FOS\RestBundle\Controller\Annotations\RouteResource;
-use App\Entity\Article;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-
 
 
 class ApiController extends AbstractController
 {
    
 /**
- * @Route("/test", name="test")
+ * @Route("/api/check", name="test")
  */
-    public function index()
+    public function check()
     {
-
-        return $this->json(
+        return new JsonResponse(
             [
                 'user' => 'plop',
                 'roles' => 'USER_ROLE'
