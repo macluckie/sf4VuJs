@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
@@ -16,19 +18,35 @@ class Article
      */
     private $id;
 
-     /**
+    /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,    
+     *      
+     * )
      */
     private $title;
-    
-    
+
+
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 200,    
+     *      
+     * )
+     * 
      */
     private $subTitle;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,    
+     *     
+     * )
      */
     private $auteur;
 
@@ -38,12 +56,14 @@ class Article
     private $date;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text", nullable=true)     
      */
     private $contenue;
 
     /**
      * @ORM\Column(type="string", length=40, nullable=true)
+     * 
+     * 
      */
     private $picture;
 
@@ -102,7 +122,7 @@ class Article
 
     /**
      * Get the value of title
-     */ 
+     */
     public function getTitle()
     {
         return $this->title;
@@ -112,7 +132,7 @@ class Article
      * Set the value of title
      *
      * @return  self
-     */ 
+     */
     public function setTitle($title)
     {
         $this->title = $title;
@@ -122,7 +142,7 @@ class Article
 
     /**
      * Get the value of subTitle
-     */ 
+     */
     public function getSubTitle()
     {
         return $this->subTitle;
@@ -132,7 +152,7 @@ class Article
      * Set the value of subTitle
      *
      * @return  self
-     */ 
+     */
     public function setSubTitle($subTitle)
     {
         $this->subTitle = $subTitle;
