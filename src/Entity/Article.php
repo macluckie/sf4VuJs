@@ -72,6 +72,12 @@ class Article
         return $this->id;
     }
 
+
+    public function SetId($id)
+    {
+        return $this->id = $id;
+    }
+
     public function getAuteur(): ?string
     {
         return $this->auteur;

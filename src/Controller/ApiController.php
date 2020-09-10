@@ -15,7 +15,7 @@ class ApiController extends AbstractController
  */
     public function check()
     {
-        return new JsonResponse(
+        return json_encode(
             [
                 'user' => 'plop',
                 'roles' => 'USER_ROLE'

@@ -4,24 +4,45 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Article;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Form\ArticleType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+
 
 
 class ArticleController  extends AbstractController
 {
+    private $em;
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
     public function getArticlesAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $articles = $em->getRepository(Article::class)->findAll();
-        return $this->json([
-            'article' => $articles,
+        $articlesArray = [];
+        foreach ($this->getArticles() as  $k => $article)
+        {
+            $articlesArray[] =
+                [
+                    'id' => $article->getId(),
+                    'title' => $article->getTitle(),
+                    'subtitle' => $article->getSubtitle(),
+                    'auteur' => $article->getAuteur(),
+                    'date' => $article->getDate(),
+                    'contenue' => $article->getContenue()
+                ];
 
-        ]);
+        }
+        return new JsonResponse($articlesArray);
+    }
+
+    public function getArticles()
+    {
+        return  $this->em->getRepository(Article::class)->findAll();
     }
 
     /**
@@ -30,13 +51,13 @@ class ArticleController  extends AbstractController
      */
     public function getArticle($id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $article = $em->getRepository(Article::class)->find($id);
-      
+        $article = $this->em->getRepository(Article::class)->find($id);
         return $this->json([
             'article' => $article,
 
-        ]);
+        ]); 
+        
+     
     }
 
 
@@ -46,9 +67,8 @@ class ArticleController  extends AbstractController
      */
     public function getIdarticle()
     {
-        $em = $this->getDoctrine()->getManager();
-        $minId = $em->getRepository(Article::class)->getMinId();
-        $maxId = $em->getRepository(Article::class)->getMaxId();
+        $minId = $this->em->getRepository(Article::class)->getMinId();
+        $maxId = $this->em->getRepository(Article::class)->getMaxId();
         return $this->json([
             'minId' => $minId[0]->getId(),
             'maxId' => $maxId[0]->getId()
@@ -63,7 +83,8 @@ class ArticleController  extends AbstractController
      */
     public function checkToken()
     {
-        return $this->json(['res' => 'ok']);
+//        return $this->json(['res' => 'ok']);
+        return new JsonResponse(['res' => 'ok']);
     }
 
 
@@ -74,16 +95,15 @@ class ArticleController  extends AbstractController
     public function postArticle(Request $request)
     {
         if ($request->isMethod('post')) {
-            $em = $this->getDoctrine()->getManager();
-            $article =  $em->getRepository(Article::class)->find($request->request->get('id'));
+            $article =  $this->em->getRepository(Article::class)->find($request->request->get('id'));
             $content = $request->request->get('content');
             $title = $request->request->get('titre');
             $author = $request->request->get('auteur');
             $article->setAuteur($author);
             $article->setContenue($content);
             $article->setTitle($title);
-            $em->persist($article);
-            $em->flush();
+            $this->em->persist($article);
+            $this->em->flush();
             return $this->json(['res' => 'ok']);
         }
     }

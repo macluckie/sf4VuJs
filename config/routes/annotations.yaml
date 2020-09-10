@@ -4,13 +4,14 @@ controllers:
 
 Article:
     type:     rest
-    host:     localhost
+    host: '%host%'
+
     resource: App\Controller\ArticleController
 
 
 User:
     type:     rest
-    host:     localhost
+    host: '%host%'
     resource: App\Controller\UserController
 
 

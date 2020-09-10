@@ -5,6 +5,14 @@
 /public/bundles/
 /var/
 /vendor/
+/.idea
+/bdd
+/configPhp
+/config/vendor
+/vhosts
+config/private.pem
+config/public.pem
+
 ###< symfony/framework-bundle ###
 
 ###> symfony/web-server-bundle ###
