@@ -201,11 +201,14 @@
     "ocramius/proxy-manager": {
         "version": "2.2.3"
     },
+    "php": {
+        "version": "7.2"
+    },
     "phpdocumentor/reflection-common": {
         "version": "2.0.0"
     },
     "phpdocumentor/reflection-docblock": {
-        "version": "4.3.2"
+        "version": "4.3.4"
     },
     "phpdocumentor/type-resolver": {
         "version": "1.0.1"
@@ -229,6 +232,18 @@
         },
         "files": [
             "config/packages/sensio_framework_extra.yaml"
+        ]
+    },
+    "symfony/apache-pack": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "410b9325a37ef86f1e47262c61738f6202202bca"
+        },
+        "files": [
+            "./public/.htaccess"
         ]
     },
     "symfony/cache": {
@@ -354,7 +369,7 @@
         "version": "v4.3.4"
     },
     "symfony/property-info": {
-        "version": "v4.3.4"
+        "version": "v4.3.9"
     },
     "symfony/routing": {
         "version": "4.2",
@@ -396,7 +411,7 @@
         "version": "v4.3.4"
     },
     "symfony/serializer": {
-        "version": "v4.3.4"
+        "version": "v4.3.9"
     },
     "symfony/serializer-pack": {
         "version": "v1.0.2"
@@ -405,9 +420,6 @@
         "version": "v1.1.6"
     },
     "symfony/stopwatch": {
-        "version": "v4.3.4"
-    },
-    "symfony/templating": {
         "version": "v4.3.4"
     },
     "symfony/translation-contracts": {
@@ -466,7 +478,7 @@
         "version": "v2.12.0"
     },
     "webmozart/assert": {
-        "version": "1.5.0"
+        "version": "1.6.0"
     },
     "willdurand/jsonp-callback-validator": {
         "version": "v1.1.0"

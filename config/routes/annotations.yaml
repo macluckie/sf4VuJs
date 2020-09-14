@@ -4,18 +4,18 @@ controllers:
 
 Article:
     type:     rest
-    host:     localhost
+    host:     sf4vujs.local
     resource: App\Controller\ArticleController
 
 
 User:
     type:     rest
-    host:     localhost
+    host:    sf4vujs.local
     resource: App\Controller\UserController
 
 
 
-api_login_check:
+api_login_check:   
     path: /api/login_check
 
 
