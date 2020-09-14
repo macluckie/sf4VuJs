@@ -10,7 +10,7 @@ class ArticleControllerFunctionnalsTest extends WebTestCase
     public function testGetArticlesAction()
     {
         $client = static::createClient();
-        $client->request('GET', 'http://apiblog.local/articles');
+        $client->request('GET', '/articles');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
@@ -21,7 +21,7 @@ class ArticleControllerFunctionnalsTest extends WebTestCase
     public function testGetOneArticlesAction($id)
     {
         $client = static::createClient();
-        $client->request('GET', 'http://apiblog.local/article/'.$id);
+        $client->request('GET', '/article/'.$id);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
