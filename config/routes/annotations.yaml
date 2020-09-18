@@ -3,14 +3,16 @@ controllers:
     type: annotation
 
 Article:
-    type:     rest
-    host:     sf4vujs.local
+    type: rest
+
+    host: '%host%'
+
     resource: App\Controller\ArticleController
 
 
 User:
-    type:     rest
-    host:    sf4vujs.local
+    type: rest
+    host: '%host%'
     resource: App\Controller\UserController
 
 

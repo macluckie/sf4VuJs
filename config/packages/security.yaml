@@ -26,15 +26,23 @@ security:
            guard:
                authenticators:
                    - lexik_jwt_authentication.jwt_token_authenticator
-       articles:
-           pattern:   ^/articles
+     
+       article:
+           pattern:   ^/edit_article
            stateless: true
            guard:
                authenticators:
-                   - lexik_jwt_authentication.jwt_token_authenticator
+                   - lexik_jwt_authentication.jwt_token_authenticator           
+       testaccess:
+           pattern:   ^/access
+           stateless: true
+           guard:
+               authenticators:
+                   - lexik_jwt_authentication.jwt_token_authenticator           
                    
 
 
     access_control:
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
+        

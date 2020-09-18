@@ -1,0 +1,80 @@
+version: "3.4"
+
+networks:
+    default: 
+        external: 
+            name: mynetwork
+
+services: 
+    apiblog:
+        build: ./
+        restart: always
+        volumes:     
+            - .:/var/www/html/
+            - ./configPhp/php.ini:/usr/local/etc/php/php.ini    
+            - ./vhosts:/etc/apache2/sites-available     
+            - ./vhosts:/etc/apache2/sites-enabled   
+        environment:
+             DATABASE_URL: mysql://root:dimitrou@db_api:3306/api_vu   
+             HOST: apiblog.local        
+        networks:
+            default:
+                ipv4_address: 192.168.1.70      
+
+
+
+    db_api:
+        image: mysql
+        restart: always
+        volumes:
+            - ./bdd:/var/lib/mysql:rw 
+        environment:
+            MYSQL_USER: root
+            MYSQL_ROOT_PASSWORD: dimitrou    
+        ports:
+            - 3306:3306   
+
+        networks:
+            default:
+                ipv4_address: 192.168.1.25
+
+        links:
+            - blackfire        
+                        
+    adminer_api:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080       
+                            
+        networks:
+            default:
+                ipv4_address: 192.168.1.13
+
+
+    blackfire:
+        image: blackfire/blackfire
+        restart: always
+        ports: ["8707"]
+        environment:
+            # Exposes BLACKFIRE_SERVER_* environment variables from the host
+            BLACKFIRE_SERVER_ID: 7da8113f-c974-4f68-bbc1-205f3bdcd17b
+            BLACKFIRE_SERVER_TOKEN: 4d7b7051719b6b5071dae156640ec30865c0229f71903f3fb39d0196b7a52ae6
+            BLACKFIRE_CLIENT_ID: d3eade27-de61-4e72-a37c-fcd471bdf9b0
+            BLACKFIRE_CLIENT_TOKEN: a213c959901556052dd3e754080d9b758175cccb4d2f05b12250456ee74ac9c7
+            #docker-compose exec blackfire blackfire curl http://example.com
+
+
+    
+         
+            
+
+
+   
+
+             
+    
+               
+
+  
+            
