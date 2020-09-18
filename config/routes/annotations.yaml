@@ -3,20 +3,21 @@ controllers:
     type: annotation
 
 Article:
-    type:     rest
+    type: rest
+
     host: '%host%'
 
     resource: App\Controller\ArticleController
 
 
 User:
-    type:     rest
+    type: rest
     host: '%host%'
     resource: App\Controller\UserController
 
 
 
-api_login_check:
+api_login_check:   
     path: /api/login_check
 
 

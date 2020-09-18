@@ -10,10 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-
-
-
-class ArticleController  extends AbstractController
+class ArticleController extends AbstractController
 {
     private $em;
     public function __construct(EntityManagerInterface $em)
@@ -24,8 +21,7 @@ class ArticleController  extends AbstractController
     public function getArticlesAction()
     {
         $articlesArray = [];
-        foreach ($this->getArticles() as  $k => $article)
-        {
+        foreach ($this->getArticles() as  $k => $article) {
             $articlesArray[] =
                 [
                     'id' => $article->getId(),
@@ -35,7 +31,6 @@ class ArticleController  extends AbstractController
                     'date' => $article->getDate(),
                     'contenue' => $article->getContenue()
                 ];
-
         }
         return new JsonResponse($articlesArray);
     }
@@ -55,9 +50,7 @@ class ArticleController  extends AbstractController
         return $this->json([
             'article' => $article,
 
-        ]); 
-        
-     
+        ]);
     }
 
 
@@ -83,7 +76,6 @@ class ArticleController  extends AbstractController
      */
     public function checkToken()
     {
-//        return $this->json(['res' => 'ok']);
         return new JsonResponse(['res' => 'ok']);
     }
 

@@ -30,6 +30,7 @@ class UserController extends AbstractController
     public function postUserAction(Request $request)
     {
         $this->addUser($request);
+        $toto = [];
         return $this->json([
             'res' => '1'
         ]);
